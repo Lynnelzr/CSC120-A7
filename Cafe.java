@@ -4,30 +4,28 @@ public class Cafe extends Building{
     private int nSugarPackets; // The number of sugar packets remaining in inventory
     private int nCreams; // The number of "splashes" of cream remaining in inventory
     private int nCups; // The number of cups remaining in inventory
-    private Boolean hasElevator;
 
     /*
-     * overloaded constructer with name, address only
+     * overloaded constructer with address only
+     */
+    public Cafe(String address ){
+        super(address);
+    }
+
+    /*
+     * overloaded constructor with name and address only
      */
     public Cafe(String name, String address){
         super(name, address);
     }
 
-    /*
-     * overloaded constructor with name, address, and nFloors only
-     */
-    public Cafe(String name, String address, int nFloors){
-        super(name, address, nFloors);
-    }
-
     /* full constructor of the Cafe */
-    public Cafe(String name, String address, int nFloors, boolean hasEle) {
+    public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors); // variables in the super clas
         this.nCoffeeOunces = 500;
         this.nSugarPackets = 50;
         this.nCreams = 50;
         this.nCups = 50;
-        this.hasElevator = hasEle;
         System.out.println("You have built a cafe: ☕");
     }
 
@@ -57,22 +55,25 @@ public class Cafe extends Building{
         this.nCups = 50;
     }
 
+    /*
+     * show available options in this class
+     */
     public void showOptions() {
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + restock()\n + checkElevator()");
     }
 
-    public void checkElevator() {
-        if (this.hasElevator == true) {
-          goToFloor(1);
-        } else {
-          System.out.println("This House doesn't have an elevator.");
-        }
+    /*
+     * can't go to any floor in this class
+     */
+    public void goToFloor() {
+        throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
       }
   
     public static void main(String[] args) {
-        Cafe myCafe = new Cafe("Campus Center Cafe", "100 Elm St", 1, false);
+        Cafe myCafe = new Cafe("Campus Center Cafe", "100 Elm St", 1);
         myCafe.showOptions();
         myCafe.enter();
+        myCafe.goToFloor();
         myCafe.sellCoffee(12, 2, 3);
     }
     

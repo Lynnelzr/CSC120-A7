@@ -58,10 +58,17 @@ public class House extends Building {
     return name;
   } 
 
+  /*
+   * show available options in this class
+   */
   public void showOptions() {
     System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + hasDiningRoom()\n + nResidents()\n + moveIn()\n + moveOut()\n + checkElevator()");
   }
 
+  /*
+   * check if there is an elevator in this building
+   * call goToFloor if there is one
+   */
   public void checkElevator() {
     if (this.hasElevator == true) {
       goToFloor(3);

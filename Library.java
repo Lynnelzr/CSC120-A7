@@ -97,10 +97,18 @@ import java.util.Set;
       }
     } 
 
+
+    /*
+     * show available options in this class
+     */
     public void showOptions() {
-      System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n) + addTitle()\n + removeTitle()\n +checkOut()\n + Return()\n + containsTitle\n + isAvailable()\n + printCollection\n + checkElevator()");
+      System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)\n + addTitle()\n + removeTitle()\n +checkOut()\n + Return()\n + containsTitle\n + isAvailable()\n + printCollection\n + checkElevator()");
     }
 
+    /*
+     * check if there is an elevator in this building
+     * call goToFloor if there is one
+     */
     public void checkElevator() {
       if (this.hasElevator == true) {
         goToFloor(1);

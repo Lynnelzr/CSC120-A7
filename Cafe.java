@@ -59,15 +59,20 @@ public class Cafe extends Building{
      * show available options in this class
      */
     public void showOptions() {
-        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + restock()\n + checkElevator()");
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + restock()\n + goToFloor()");
     }
 
     /*
      * can't go to any floor in this class
      */
     public void goToFloor() {
-        throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
+        if (this.activeFloor == -1) {
+            throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+        }
+        else {
+            throw new RuntimeException("Accessible only to employees.");
       }
+    }
   
     public static void main(String[] args) {
         Cafe myCafe = new Cafe("Campus Center Cafe", "100 Elm St", 1);

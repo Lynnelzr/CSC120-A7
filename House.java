@@ -69,21 +69,26 @@ public class House extends Building {
    * check if there is an elevator in this building
    * call goToFloor if there is one
    */
-  public void checkElevator() {
-    if (this.hasElevator == true) {
-      goToFloor(3);
-    } else {
-      System.out.println("This House doesn't have an elevator.");
+  public void goToFloor(int floorNum) {
+    if(hasElevator == true){
+      if (this.activeFloor == -1) {
+        throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");}
+    if (floorNum < 1 || floorNum > this.nFloors) {
+      throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
+      }
+      System.out.println("You are now on floor #" + floorNum + " of " + this.name);
+      this.activeFloor = floorNum;
+      } else{
+      throw new RuntimeException("This house doesn't have an elevator.");
     }
   }
-
 
   public static void main(String[] args){
     System.out.println("You have built a house: 🏠");
     House myHouse = new House("Cutter", "10 Prospect Street", 3, true, true);
     myHouse.showOptions();
     myHouse.enter();
-    myHouse.checkElevator();
+    myHouse.goToFloor(3);
     System.out.println(myHouse);
     myHouse.moveIn("Lynne", 9914);
     myHouse.moveIn("Iris");
